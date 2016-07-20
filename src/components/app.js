@@ -16,6 +16,15 @@ class App extends Component {
     };
   }
 
+  setZIndex(id, z) {
+    this.setState({
+      notes: this.state.notes.update(id, (n) => {
+        return Object.assign({}, n, { zIndex: z });
+      }),
+    });
+  }
+
+
   deleteNote(id) {
     this.setState({
       notes: this.state.notes.delete(id),
@@ -61,7 +70,6 @@ class App extends Component {
     });
   }
 
-
   render() {
     return (
       <div>
@@ -77,6 +85,8 @@ class App extends Component {
               (status) => this.editNote(id, status)
             } editText={
               (text) => this.editText(id, text)
+            } setZIndex={
+              (z) => this.setZIndex(id, z)
             }
             />
           );
