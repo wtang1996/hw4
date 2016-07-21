@@ -3,9 +3,13 @@ import Draggable from 'react-draggable';
 import Textarea from 'react-textarea-autosize';
 import marked from 'marked';
 
-
 // function based "dumb" component with no state
 const Note = (props) => {
+  const onStartDrag = (e, ui) => {
+    props.updatePosition(ui.x, ui.y);
+    props.setZIndex();
+  };
+
   const onDrag = (e, ui) => {
     props.updatePosition(ui.x, ui.y);
   };
@@ -33,7 +37,7 @@ const Note = (props) => {
   const editing = () => {
     if (props.note.isEditing) {
       return (
-        <div className="note">
+        <div className="note" style={{ zIndex: props.note.zIndex }} >
           <div className="topBar">
             <div className="leftBar">
               <div>{props.note.title}</div>
@@ -47,7 +51,7 @@ const Note = (props) => {
       );
     } else {
       return (
-        <div className="note">
+        <div className="note" style={{ zIndex: props.note.zIndex }} >
           <div className="topBar">
             <div className="leftBar">
               <div>{props.note.title}</div>
@@ -68,8 +72,10 @@ const Note = (props) => {
         handle=".note-mover"
         grid={[25, 25]}
         position={{ x: props.note.x, y: props.note.y }}
+        onStart={onStartDrag}
         onDrag={onDrag}
         onStop={onStopDrag}
+        zIndex={props.note.zIndex}
       >
         {editing()}
       </Draggable>

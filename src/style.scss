@@ -1,9 +1,14 @@
 body {
   font-family: "Roboto", sans-serif;
   color: rgb(10%, 10%, 10%);
-  background: darken(white, 10%);
+  background: url("http://wallpapercave.com/wp/5JdtbnY.jpg");
   margin: 50px;
   font-size: 1em;
+}
+
+h1 {
+  font-size: 3em;
+  color: white;
 }
 
 .note {
@@ -31,4 +36,20 @@ body {
   .content {
     padding: 3px;
   }
+}
+
+input {
+  font-size: 1.5em;
+  width: 60%;
+  height: 35px;
+  border: solid 1px gray;
+  border-radius: 3px;
+}
+button {
+  font-size: 1.5em;
+  height: 40px;
+  width: 20%;
+  border: solid 1px gray;
+  border-radius: 5px;
+  background: white;
 }

@@ -13,15 +13,18 @@ class App extends Component {
     this.state = {
       notes: Immutable.Map(),
       id: 0,
+      maxZ: 0,
     };
   }
 
-  setZIndex(id, z) {
+  setZIndex(id) {
     this.setState({
+      maxZ: this.state.maxZ + 1,
       notes: this.state.notes.update(id, (n) => {
-        return Object.assign({}, n, { zIndex: z });
+        return Object.assign({}, n, { zIndex: this.state.maxZ });
       }),
     });
+    console.log(this.state.maxZ);
   }
 
 
@@ -73,6 +76,7 @@ class App extends Component {
   render() {
     return (
       <div>
+        <h1>Note Board</h1>
         <InputBar addNote={titleInput => this.addNote(titleInput)} />
         <div>
         {this.state.notes.entrySeq().map(([id, note]) => {
@@ -86,7 +90,7 @@ class App extends Component {
             } editText={
               (text) => this.editText(id, text)
             } setZIndex={
-              (z) => this.setZIndex(id, z)
+              (z) => this.setZIndex(id)
             }
             />
           );
