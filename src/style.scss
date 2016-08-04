@@ -1,7 +1,101 @@
 body {
-  font-family: "Roboto", sans-serif;
+  font-family: 'Indie Flower', cursive;
   color: rgb(10%, 10%, 10%);
-  background: url("http://wallpapercave.com/wp/5JdtbnY.jpg");
-  margin: 50px;
-  font-size: 1em;
+  background: url("http://www.planwallpaper.com/static/images/Alien_Ink_2560X1600_Abstract_Background_dh8LV2F.jpg");
+  font-size: 1.7em;
+}
+
+nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: white;
+  width: 70%;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.main {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  align-items: center;
+}
+
+.postList_index {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  align-items: center;
+}
+
+.post_index {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  padding: 15px;
+  width: 95%;
+  font-size: 1.5em;
+  background: white;
+  border-radius: 5px;
+  width: 50vw;
+  border-bottom: solid black 1px;
+  margin: 5px;
+}
+
+a {
+  text-decoration: none;
+  color: rgb(10%, 10%, 10%);
+  border-bottom: 0;
+}
+
+button {
+  border: 2px solid #56B68B;
+  border-radius: 4px;
+  background: white;
+  color: #56B68B;
+  font-size: 1.249rem;
+  line-height: 7vh;
+  padding: 0 4vw;
+}
+
+.addPost {
+  border: 2px solid #56B68B;
+  border-radius: 4px;
+  background: white;
+  color: #56B68B;
+  font-size: 1.249rem;
+  line-height: 5vh;
+  padding: 0 4vw;
+}
+
+input {
+  line-height: 7vh;
+  width: 100%;
+  font-size: 1.6em;
+}
+
+.show {
+  display: flex;
+  flex-direction: column;
+  width: 50vw;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.createPost {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
+  width: 50vw;
+  height: 60vh;
+}
+
+h1 {
+  font-family: 'Roboto', self-serif;
+}
+
+.title {
+  height: 5vh;
 }
