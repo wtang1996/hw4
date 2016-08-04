@@ -34,12 +34,16 @@ class New extends Component {
 
   Submit(e) {
     e.preventDefault();
-    const post = {
-      title: this.state.title,
-      tags: this.state.tags,
-      content: this.state.content,
-    };
-    this.props.createPost(post);
+    if (this.state.title !== '' && this.state.tags !== '' && this.state.content !== '') {
+      const post = {
+        title: this.state.title,
+        tags: this.state.tags,
+        content: this.state.content,
+      };
+      this.props.createPost(post);
+    } else {
+      console.log('All fields required input values!');
+    }
   }
 
   render() {
