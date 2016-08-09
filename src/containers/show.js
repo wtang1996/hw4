@@ -13,6 +13,8 @@ class Show extends Component {
       title: '',
       tags: '',
       content: '',
+      comment: '',
+      comments: [],
       isTitleEditing: false,
       isTagsEditing: false,
       isContentEditing: false,
@@ -23,9 +25,12 @@ class Show extends Component {
     this.onTitleChange = this.onTitleChange.bind(this);
     this.onTagsChange = this.onTagsChange.bind(this);
     this.onContentChange = this.onContentChange.bind(this);
+    this.onCommentChange = this.onCommentChange.bind(this);
     this.renderTitle = this.renderTitle.bind(this);
     this.renderTags = this.renderTags.bind(this);
     this.renderContent = this.renderContent.bind(this);
+    this.renderComments = this.renderComments.bind(this);
+    this.submitComment = this.submitComment.bind(this);
   }
 
   componentWillMount() {
@@ -44,12 +49,27 @@ class Show extends Component {
     this.setState({ content: event.target.value });
   }
 
+  onCommentChange(event) {
+    this.setState({ comment: event.target.value });
+  }
+
   update() {
-    this.props.updatePost(this.props.params.id, { content: this.state.content, tags: this.state.tags, title: this.state.title });
+    this.props.updatePost(this.props.params.id, { content: this.state.content, tags: this.state.tags, title: this.state.title, comments: this.state.comments });
   }
 
   delete() {
     this.props.deletePost(this.props.params.id);
+  }
+
+  submitComment(e) {
+    e.preventDefault();
+    const updatedComments = this.state.comments;
+    updatedComments.push(this.state.comment);
+    this.setState({
+      comments: updatedComments,
+      comment: '',
+    });
+    this.update();
   }
 
   renderTitle() {
@@ -103,14 +123,32 @@ class Show extends Component {
     }
   }
 
+  renderComments() {
+    return (
+      <form onSubmit={this.submitComment}>
+        <input onChange={this.onCommentChange} value={this.state.comment} />
+        <button>Submit</button>
+      </form>
+    );
+  }
+
   render() {
     if (this.props.post != null) {
+      let index = 0;
       return (
         <div className="show">
           <h1>{this.renderTitle()}</h1>
           <div>{this.renderTags()}</div>
           <div>{this.renderContent()}</div>
           <button onClick={this.delete} className="delete">Delete</button>
+          <div>Comments
+            {
+              this.props.post.comments.map(comment => {
+                index++;
+                return (<div key={index}>{index}. {comment}</div>);
+              })}
+          </div>
+          <div>{this.renderComments()}</div>
         </div>
       );
     }
