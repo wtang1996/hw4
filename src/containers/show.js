@@ -15,6 +15,7 @@ class Show extends Component {
       content: '',
       comment: '',
       comments: [],
+      author: '',
       isTitleEditing: false,
       isTagsEditing: false,
       isContentEditing: false,
@@ -109,15 +110,18 @@ class Show extends Component {
   renderContent() {
     if (this.state.isContentEditing) {
       return (
-        <input onChange={this.onContentChange} defaultValue={this.props.post.content} onBlur={() => {
-          this.setState({ isContentEditing: false });
-          this.update();
-        }} />
+        <div className="editingContent">
+          <input onChange={this.onContentChange} defaultValue={this.props.post.content} onBlur={() => {
+            this.setState({ isContentEditing: false });
+            this.update();
+          }} />
+          <div className="content" dangerouslySetInnerHTML={{ __html: marked(this.state.content || '') }} />
+        </div>
       );
     } else {
       return (
         <div className="content" onClick={() => this.setState({ isContentEditing: true })}
-          dangerouslySetInnerHTML={{ __html: marked(this.props.post.content || 'tags:') }}
+          dangerouslySetInnerHTML={{ __html: marked(this.props.post.content || '') }}
         />
         );
     }
@@ -138,14 +142,15 @@ class Show extends Component {
       return (
         <div className="show">
           <h1>{this.renderTitle()}</h1>
+          <div>Author: {this.props.post.author}</div>
           <div>{this.renderTags()}</div>
           <div>{this.renderContent()}</div>
           <button onClick={this.delete} className="delete">Delete</button>
-          <div>Comments
+          <div className="comments">Comments
             {
               this.props.post.comments.map(comment => {
                 index++;
-                return (<div key={index}>{index}. {comment}</div>);
+                return (<div className="comment" key={index}>{index}. {comment}</div>);
               })}
           </div>
           <div>{this.renderComments()}</div>

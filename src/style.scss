@@ -55,16 +55,6 @@ button {
   background: white;
   color: #56B68B;
   font-size: 1.249rem;
-  line-height: 7vh;
-  padding: 0 4vw;
-}
-
-.addPost {
-  border: 2px solid #56B68B;
-  border-radius: 4px;
-  background: white;
-  color: #56B68B;
-  font-size: 1.249rem;
   line-height: 5vh;
   padding: 0 4vw;
 }
@@ -98,4 +88,8 @@ h1 {
 
 .title {
   height: 5vh;
+}
+
+.comments {
+  margin-top: 100px;
 }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { createPost } from '../actions';
+import { createPost, errorMessage } from '../actions';
 
 class New extends Component {
   constructor(props) {
@@ -42,7 +42,7 @@ class New extends Component {
       };
       this.props.createPost(post);
     } else {
-      console.log('All fields required input values!');
+      this.props.errorMessage('All fields required input values!');
     }
   }
 
@@ -62,4 +62,4 @@ class New extends Component {
 
 
 // react-redux glue -- outputs Container that knows how to call actions
-export default connect(null, { createPost })(New);
+export default connect(null, { createPost, errorMessage })(New);
