@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { browserHistory } from 'react-router';
 
-const ROOT_URL = 'https://cs52-blog.herokuapp.com/api';
+const ROOT_URL = 'https://hw5p1.herokuapp.com/api';
 const API_KEY = '?key=weijia_tang';
 
 // keys for actiontypes
