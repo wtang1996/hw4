@@ -146,7 +146,8 @@ class Show extends Component {
               this.props.post.comments.map(comment => {
                 index++;
                 return (<div key={index}>{index}. {comment}</div>);
-              })}
+              })
+            }
           </div>
           <div>{this.renderComments()}</div>
         </div>
